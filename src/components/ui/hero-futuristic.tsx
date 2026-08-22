@@ -279,7 +279,13 @@ export const Html = () => {
               textShadow: ' 0 2px 5px rgba(0, 0, 0, 0.53)'
             }}
           >
-            WITH <span className="scan-effect-container text-5xl font-extrabold tracking-wide letter-spacing-[5px]" data-text="M A H M O U D </> A B O T A L E B">M A H M O U D {"</>"} A B O T A L E B</span>
+            <span className="block md:inline text-center md:text-left mb-2 md:mb-0">WITH</span>
+            <span className="hidden md:inline"> </span>
+            <span className="scan-effect-container text-3xl md:text-5xl font-extrabold tracking-wide block md:inline text-center md:text-left" data-text="M A H M O U D">M A H M O U D</span>
+            <span className="hidden md:inline"> </span>
+            <span className="scan-effect-container text-4xl md:text-5xl font-extrabold tracking-wide block md:inline text-red-500 md:text-white my-2 md:my-0 text-center md:text-left" data-text="</>">{"</>"}</span>
+            <span className="hidden md:inline"> </span>
+            <span className="scan-effect-container text-3xl md:text-5xl font-extrabold tracking-wide block md:inline text-center md:text-left" data-text="A B O T A L E B">A B O T A L E B</span>
           </div>
         </div>
       </div>
