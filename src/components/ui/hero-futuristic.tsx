@@ -279,13 +279,16 @@ export const Html = () => {
               textShadow: ' 0 2px 5px rgba(0, 0, 0, 0.53)'
             }}
           >
-            <span className="block md:inline text-center md:text-left mb-2 md:mb-0">WITH</span>
-            <span className="hidden md:inline"> </span>
-            <span className="scan-effect-container text-3xl md:text-5xl font-extrabold tracking-wide block md:inline text-center md:text-left" data-text="M A H M O U D">M A H M O U D</span>
-            <span className="hidden md:inline"> </span>
-            <span className="scan-effect-container text-4xl md:text-5xl font-extrabold tracking-wide block md:inline text-red-500 md:text-white my-2 md:my-0 text-center md:text-left" data-text="</>">{"</>"}</span>
-            <span className="hidden md:inline"> </span>
-            <span className="scan-effect-container text-3xl md:text-5xl font-extrabold tracking-wide block md:inline text-center md:text-left" data-text="A B O T A L E B">A B O T A L E B</span>
+            <div className="flex flex-col md:flex-row md:items-center justify-center w-fit mx-auto">
+              <div className="flex flex-col md:flex-row items-start md:items-center">
+                <span className="text-xl md:text-inherit mb-1 md:mb-0 md:mr-3">WITH</span>
+                <span className="scan-effect-container text-4xl md:text-5xl font-extrabold tracking-wide" data-text="M A H M O U D">M A H M O U D</span>
+              </div>
+              
+              <span className="scan-effect-container text-5xl font-extrabold tracking-wide text-red-500 md:text-white my-3 md:my-0 md:mx-4 self-center md:self-auto" data-text="</>">{"</>"}</span>
+              
+              <span className="scan-effect-container text-4xl md:text-5xl font-extrabold tracking-wide self-end md:self-auto" data-text="A B O T A L E B">A B O T A L E B</span>
+            </div>
           </div>
         </div>
       </div>
