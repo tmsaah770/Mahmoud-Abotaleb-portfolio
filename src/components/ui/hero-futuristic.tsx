@@ -2,7 +2,7 @@
 
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
 import { useAspect, useTexture } from '@react-three/drei';
-import { useMemo, useRef, useState, useEffect } from 'react';
+import { useMemo, useRef, useState, useEffect, Suspense } from 'react';
 import * as THREE from 'three/webgpu';
 import { bloom } from 'three/examples/jsm/tsl/display/BloomNode.js';
 import { Mesh } from 'three';
@@ -304,14 +304,17 @@ export const Html = () => {
       <Canvas
         className="absolute inset-0 z-0"
         flat
-        gl={async (props) => {
-          const renderer = new THREE.WebGPURenderer(props as any);
-          await renderer.init();
-          return renderer;
+        gl={{ antialias: true }}
+        onCreated={async ({ gl }) => {
+          if ('init' in gl) {
+             await (gl as any).init();
+          }
         }}
       >
-        <PostProcessing fullScreenEffect={true} />
-        <Scene />
+        <Suspense fallback={null}>
+          <PostProcessing fullScreenEffect={true} />
+          <Scene />
+        </Suspense>
       </Canvas>
     </div>
   );
