@@ -5,7 +5,6 @@ import { useAspect, useTexture } from '@react-three/drei';
 import { useMemo, useRef, useState, useEffect, Suspense } from 'react';
 import * as THREE from 'three/webgpu';
 import { bloom } from 'three/examples/jsm/tsl/display/BloomNode.js';
-import { Mesh } from 'three';
 import { ArrowDown } from 'lucide-react';
 
 import {
@@ -45,9 +44,20 @@ const PostProcessing = ({
 }) => {
   const { gl, scene, camera } = useThree();
   const progressRef = useRef({ value: 0 });
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    if ('init' in gl) {
+      (gl as any).init().then(() => setIsInitialized(true)).catch(console.error);
+    } else {
+      setIsInitialized(true);
+    }
+  }, [gl]);
 
   const render = useMemo(() => {
-    const postProcessing = new THREE.PostProcessing(gl as any);
+    // Suppress warning by using RenderPipeline if available, else PostProcessing
+    const Pipeline = (THREE as any).RenderPipeline || THREE.PostProcessing;
+    const postProcessing = new Pipeline(gl as any);
     const scenePass = pass(scene, camera);
     const scenePassColor = scenePass.getTextureNode('output');
     const bloomPass = bloom(scenePassColor, strength, 0.5, threshold);
@@ -79,9 +89,23 @@ const PostProcessing = ({
   }, [camera, gl, scene, strength, threshold, fullScreenEffect]);
 
   useFrame(({ clock }) => {
+    if (!isInitialized) return;
     // Animate the scan line from top to bottom
     progressRef.current.value = (Math.sin(clock.getElapsedTime() * 0.5) * 0.5 + 0.5);
-    render.renderAsync();
+    if (typeof (gl as any).init === 'function') {
+       if (render.render) {
+         try {
+           if (!gl.domElement.getContext) {
+             console.error("gl.domElement missing getContext!", gl.domElement);
+           }
+           render.render(scene, camera);
+         } catch(e) {
+           console.error("RenderPipeline render error:", e);
+         }
+       } else {
+         render.renderAsync().catch(() => {});
+       }
+    }
   }, 1);
 
   return null;
@@ -93,7 +117,7 @@ const HEIGHT = 300;
 const Scene = () => {
   const [rawMap, depthMap] = useTexture([TEXTUREMAP.src, DEPTHMAP.src]);
 
-  const meshRef = useRef<Mesh>(null);
+  const meshRef = useRef<THREE.Mesh>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -138,7 +162,7 @@ const Scene = () => {
     const material = new THREE.MeshBasicNodeMaterial({
       colorNode: final,
       transparent: true,
-      opacity: 0,
+      opacity: 0, 
     });
 
     return {
@@ -177,6 +201,26 @@ const Scene = () => {
       <planeGeometry />
     </mesh>
   );
+};
+
+const InitRenderer = ({ children }: { children: React.ReactNode }) => {
+  const gl = useThree((state) => state.gl);
+  const [ready, setReady] = useState(false);
+  
+  useEffect(() => {
+    if ('init' in gl) {
+      (gl as any).init().then(() => setReady(true)).catch(console.error);
+    } else {
+      setReady(true);
+    }
+  }, [gl]);
+
+  // Block default render loop until WebGPU is ready and PostProcessing takes over
+  useFrame(() => {
+    // By having a useFrame with priority 1, we prevent R3F's default render loop from running
+  }, 1);
+
+  return ready ? <>{children}</> : null;
 };
 
 export const Html = () => {
@@ -304,17 +348,21 @@ export const Html = () => {
       <Canvas
         className="absolute inset-0 z-0"
         flat
-        gl={{ antialias: true }}
-        onCreated={async ({ gl }) => {
-          if ('init' in gl) {
-             await (gl as any).init();
+        gl={(propsOrCanvas: any) => {
+          const actualCanvas = propsOrCanvas.canvas || propsOrCanvas;
+          if (!actualCanvas.getContext) {
+            console.log("Still no getContext. Keys:", Object.keys(propsOrCanvas));
           }
+          const renderer = new THREE.WebGPURenderer({ canvas: actualCanvas, antialias: true, forceWebGL: true } as any);
+          return renderer as any;
         }}
       >
-        <Suspense fallback={null}>
-          <PostProcessing fullScreenEffect={true} />
-          <Scene />
-        </Suspense>
+        <InitRenderer>
+          <Suspense fallback={null}>
+            <PostProcessing fullScreenEffect={true} />
+            <Scene />
+          </Suspense>
+        </InitRenderer>
       </Canvas>
     </div>
   );
