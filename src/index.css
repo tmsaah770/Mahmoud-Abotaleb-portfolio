@@ -102,3 +102,127 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ==========================================================================
+   3D Effect Loader Keyframes & Styles (Pure Black & Smooth Dark Red Wave)
+   ========================================================================== */
+
+@keyframes smoothDotLift {
+  0%, 100% {
+    transform: translate(0, 0);
+    background-color: #0b0c0e;
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: none;
+  }
+  25% {
+    transform: translate(-9px, -9px);
+    background-color: #991b1b; /* أحمر غامق */
+    border-color: #b91c1c;
+    box-shadow: 0 0 16px rgba(153, 27, 27, 0.5);
+  }
+  50% {
+    transform: translate(0, 0);
+    background-color: #0b0c0e;
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: none;
+  }
+}
+
+.pl {
+  position: relative;
+  width: 17em;
+  height: 17em;
+  border-radius: 50%;
+  background: #000000; /* أسود بالكامل - بدون أي رمادي */
+  border: 1px solid rgba(185, 28, 28, 0.25);
+  box-shadow: 
+    0 0 45px rgba(185, 28, 28, 0.12),
+    inset 0 0 35px rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  user-select: none;
+}
+
+.pl__text {
+  font-family: var(--font-heading), monospace, sans-serif;
+  font-size: 0.8em;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(185, 28, 28, 0.7);
+  z-index: 10;
+}
+
+/* مكان الدايرة الأصلي: فاضي بلون الخلفية الأسود وبدون ظل */
+.pl__dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.8em;
+  height: 1.8em;
+  margin: -0.9em 0 0 -0.9em;
+  border-radius: 50%;
+  background-color: #000000; /* أسود بلون الخلفية تماماً */
+  border: 1px solid rgba(255, 255, 255, 0.07); /* حلقة خفيفة جداً مكان الدايرة */
+  box-shadow: none !important; /* بدون أي ظل تحت الدواير */
+}
+
+/* الدايرة نفسها: دايرة واحدة فقط تتحرك بسلاسة بلون أحمر غامق */
+.pl__dot:before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  border-radius: 50%;
+  background-color: #0b0c0e;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  animation: smoothDotLift 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  box-shadow: none;
+  z-index: 2;
+}
+
+/* إلغاء الـ after لمنع انقسام الدايرة إلى دائرتين */
+.pl__dot:after {
+  display: none !important;
+}
+
+.pl__dot:nth-child(1) { transform: rotate(0deg) translateY(-5.4em) rotate(0deg); z-index: 6; }
+.pl__dot:nth-child(1):before { animation-delay: 0s; }
+
+.pl__dot:nth-child(2) { transform: rotate(30deg) translateY(-5.4em) rotate(-30deg); z-index: 5; }
+.pl__dot:nth-child(2):before { animation-delay: 0.2s; }
+
+.pl__dot:nth-child(3) { transform: rotate(60deg) translateY(-5.4em) rotate(-60deg); z-index: 4; }
+.pl__dot:nth-child(3):before { animation-delay: 0.4s; }
+
+.pl__dot:nth-child(4) { transform: rotate(90deg) translateY(-5.4em) rotate(-90deg); z-index: 3; }
+.pl__dot:nth-child(4):before { animation-delay: 0.6s; }
+
+.pl__dot:nth-child(5) { transform: rotate(120deg) translateY(-5.4em) rotate(-120deg); z-index: 2; }
+.pl__dot:nth-child(5):before { animation-delay: 0.8s; }
+
+.pl__dot:nth-child(6) { transform: rotate(150deg) translateY(-5.4em) rotate(-150deg); z-index: 1; }
+.pl__dot:nth-child(6):before { animation-delay: 1.0s; }
+
+.pl__dot:nth-child(7) { transform: rotate(180deg) translateY(-5.4em) rotate(-180deg); z-index: 2; }
+.pl__dot:nth-child(7):before { animation-delay: 1.2s; }
+
+.pl__dot:nth-child(8) { transform: rotate(210deg) translateY(-5.4em) rotate(-210deg); z-index: 3; }
+.pl__dot:nth-child(8):before { animation-delay: 1.4s; }
+
+.pl__dot:nth-child(9) { transform: rotate(240deg) translateY(-5.4em) rotate(-240deg); z-index: 4; }
+.pl__dot:nth-child(9):before { animation-delay: 1.6s; }
+
+.pl__dot:nth-child(10) { transform: rotate(270deg) translateY(-5.4em) rotate(-270deg); z-index: 5; }
+.pl__dot:nth-child(10):before { animation-delay: 1.8s; }
+
+.pl__dot:nth-child(11) { transform: rotate(300deg) translateY(-5.4em) rotate(-300deg); z-index: 6; }
+.pl__dot:nth-child(11):before { animation-delay: 2.0s; }
+
+.pl__dot:nth-child(12) { transform: rotate(330deg) translateY(-5.4em) rotate(-330deg); z-index: 7; }
+.pl__dot:nth-child(12):before { animation-delay: 2.2s; }

@@ -136,7 +136,7 @@ const Scene = () => {
   );
 };
 
-export const Html = () => {
+export const Html = ({ startAnimation = true }: { startAnimation?: boolean }) => {
   const titleWords = 'Build Your Dreams'.split(' ');
 
   const [visibleWords, setVisibleWords] = useState(0);
@@ -150,6 +150,8 @@ export const Html = () => {
   }, [titleWords.length]);
 
   useEffect(() => {
+    if (!startAnimation) return;
+
     if (visibleWords < titleWords.length) {
       const timeout = setTimeout(() => setVisibleWords(visibleWords + 1), 600);
       return () => clearTimeout(timeout);
@@ -157,7 +159,7 @@ export const Html = () => {
       const timeout = setTimeout(() => setSubtitleVisible(true), 800);
       return () => clearTimeout(timeout);
     }
-  }, [visibleWords, titleWords.length]);
+  }, [visibleWords, titleWords.length, startAnimation]);
 
   return (
     <div className="h-svh w-full relative overflow-hidden bg-black">

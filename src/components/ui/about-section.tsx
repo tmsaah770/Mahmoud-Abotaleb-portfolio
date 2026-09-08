@@ -24,14 +24,14 @@ export default function AboutSection() {
           className="relative group flex justify-center"
         >
           <div className="absolute inset-0 bg-red-600 rounded-full blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity duration-1000"></div>
-          <div className="relative w-72 h-72 md:w-96 md:h-96 border border-white/10 rounded-2xl bg-black/50 backdrop-blur-sm overflow-hidden flex items-center justify-center">
+          <div className="relative w-72 h-72 md:w-96 md:h-96 border border-white/10 rounded-2xl bg-black backdrop-blur-sm overflow-hidden flex items-end justify-center">
             {/* Corner Accents */}
             <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-red-600 z-10"></div>
             <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-red-600 z-10"></div>
             <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-red-600 z-10"></div>
             <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-red-600 z-10"></div>
             
-            <img src={meImage} alt="Mahmoud" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+            <img src={meImage} alt="Mahmoud" className="w-[60%] h-[90%] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
             
             {/* Scanning line over the box */}
             <div className="absolute top-0 left-0 w-full h-[2px] bg-red-600 shadow-[0_0_15px_rgba(194,0,0,1)] animate-[scanMoveY_4s_ease-in-out_infinite_alternate] z-20"></div>

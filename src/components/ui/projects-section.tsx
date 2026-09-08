@@ -1,4 +1,5 @@
 import { ExternalLink, Code } from 'lucide-react';
+import TmsaahShop from "../../assets/TMSAAH-SHOP.png";
 import Ehyaaa from "../../assets/Ehyaa.png";
 import Timzee from "../../assets/Timzee.png";
 import FreshMeal from "../../assets/Fresh-Meal.png";
@@ -9,12 +10,21 @@ import { motion } from 'framer-motion';
 
 const projects = [
   {
+    title: 'TMSAAH SHOP',
+    subtitle: '(LUXE STORE)',
+    desc: 'A premium full-stack luxury fashion e-commerce platform deployed and live-hosted on a public web server, accessible to all users worldwide. Engineered with a modern decoupled architecture featuring a reactive React 19 SPA (Vite & Tailwind CSS) and a robust Laravel 12 RESTful API backend with MySQL, Sanctum authentication, and dual payment gateways (Stripe & PayPal). Includes an advanced, full-featured Admin Dashboard delivering complete control and comprehensive management over products, categories, orders, customers, and store operations.',
+    tech: ['React 19', 'Laravel 12', 'MySQL', 'Stripe & PayPal', 'Tailwind CSS', 'REST API', 'Web Hosting'],
+    image: TmsaahShop,
+    link: 'https://tmsaah-shop.ehyaa.site/',
+    github: 'https://github.com/tmsaah770/TmsaaH-Shop'
+  },
+  {
     title: 'EHYAA (إحياء)',
     desc: 'Comprehensive full-stack web application featuring a high-performance React SPA and a secure Laravel API backend with JWT authentication and automated MySQL migrations.',
     tech: ['React', 'Laravel', 'MySQL', 'REST API'],
     image: Ehyaaa,
     link: 'https://ehyaa.site',
-    github: 'https://github.com/tmsaah770'
+    github: 'https://github.com/tmsaah770/EHYAA'
   },
   {
     title: 'TIMZEE',
@@ -22,7 +32,7 @@ const projects = [
     tech: ['React', 'Vite', 'Tailwind CSS'],
     image: Timzee,
     link: 'https://tmsaah770.github.io/TmsaaH',
-    github: 'https://github.com/tmsaah770'
+    github: 'https://github.com/tmsaah770/TmsaaH/tree/main/pro2'
   },
   {
     title: 'FRESH MEAL',
@@ -66,46 +76,74 @@ export default function ProjectsSection() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+        <div className="flex flex-col items-center gap-10 w-full">
           {projects.map((project, i) => (
             <motion.div 
               key={i}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-              className="group relative bg-black border border-white/10 rounded-xl overflow-hidden hover:border-red-600/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(194,0,0,0.2)] flex flex-col"
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              className="group relative bg-black/60 border border-white/10 rounded-2xl overflow-hidden hover:border-red-600/50 transition-all duration-500 hover:shadow-[0_0_35px_rgba(194,0,0,0.2)] flex flex-col w-[90%] lg:w-[80%] items-center"
             >
               {/* Image Container */}
-              <div className="relative  h-[300px] overflow-hidden">
-                <div className="absolute inset-0 bg-red-600/20 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
+              <div className="relative w-full min-h-[260px] sm:min-h-[320px] lg:min-h-[360px] overflow-hidden bg-black/40 flex items-center justify-center">
+                <div className="absolute inset-0 bg-red-600/15 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity  duration-500"></div>
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full  object-cover    transition-all duration-700"
+                  className="w-full  object-cover  "
                 />
               </div>
 
               {/* Content */}
-              <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-xl font-bold uppercase tracking-wider mb-3 group-hover:text-red-500 transition-colors">{project.title}</h3>
-                <p className="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">{project.desc}</p>
-                
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.map((t, index) => (
-                    <span key={index} className="text-xs font-mono text-red-400 bg-red-950/30 px-2 py-1 rounded border border-red-900/50">
-                      {t}
+              <div className="p-8 lg:p-10 flex flex-col justify-between items-center w-full text-center border-t border-white/10 bg-black/40 backdrop-blur-sm">
+                <div className="w-full flex flex-col items-center">
+                  <div className="flex items-center justify-center gap-2 mb-4 w-full">
+                    <span className="text-xs text-center font-mono text-red-500 tracking-[0.2em] uppercase font-bold">
+                      PROJECT // 0{i + 1}
                     </span>
-                  ))}
+                  </div>
+                  <h3 className="text-2xl lg:text-3xl font-bold uppercase tracking-wider mb-4 group-hover:text-red-500 transition-colors">
+                    <span>{project.title}</span>
+                    {project.subtitle && (
+                      <span className="block text-lg lg:text-xl font-semibold text-gray-400 group-hover:text-red-400 transition-colors mt-1">
+                        {project.subtitle}
+                      </span>
+                    )}
+                  </h3>
+                  <p className="text-gray-400 text-sm lg:text-base mb-6 leading-relaxed max-w-3xl">
+                    {project.desc}
+                  </p>
                 </div>
+                
+                <div className="w-full flex flex-col items-center">
+                  <div className="flex flex-wrap justify-center w-full gap-2 mb-6">
+                    {project.tech.map((t, index) => (
+                      <span key={index} className="text-xs font-mono text-red-400 bg-red-950/30 px-3 py-1 rounded-md border border-red-900/50">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
 
-                <div className="flex items-center gap-4 pt-4 border-t border-white/10">
-                  <a href={project.link} className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider hover:text-red-500 transition-colors">
-                    <ExternalLink className="w-4 h-4" /> Live Demo
-                  </a>
-                  <a href={project.github} className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-gray-500 hover:text-white transition-colors ml-auto">
-                    <Code className="w-4 h-4" /> Code
-                  </a>
+                  <div className="flex items-center w-full gap-4 pt-4 border-t border-white/10">
+                    <a 
+                      href={project.link} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-white hover:text-red-500 transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4 text-red-500" /> Live Demo
+                    </a>
+                    <a 
+                      href={project.github} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-gray-400 hover:text-white transition-colors ml-auto"
+                    >
+                      <Code className="w-4 h-4" /> Code
+                    </a>
+                  </div>
                 </div>
               </div>
             </motion.div>
