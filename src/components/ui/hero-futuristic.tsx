@@ -99,13 +99,7 @@ const HEIGHT = 300;
 const Scene = () => {
   const [rawMap, depthMap] = useTexture([TEXTUREMAP.src, DEPTHMAP.src]);
   const materialRef = useRef<any>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    if (rawMap && depthMap) {
-      setVisible(true);
-    }
-  }, [rawMap, depthMap]);
+  const visible = !!rawMap && !!depthMap;
 
   const [w, h] = useAspect(WIDTH, HEIGHT);
 
@@ -141,13 +135,8 @@ export const Html = ({ startAnimation = true }: { startAnimation?: boolean }) =>
 
   const [visibleWords, setVisibleWords] = useState(0);
   const [subtitleVisible, setSubtitleVisible] = useState(false);
-  const [delays, setDelays] = useState<number[]>([]);
-  const [subtitleDelay, setSubtitleDelay] = useState(0);
-
-  useEffect(() => {
-    setDelays(titleWords.map(() => Math.random() * 0.07));
-    setSubtitleDelay(Math.random() * 0.1);
-  }, [titleWords.length]);
+  const [delays] = useState<number[]>(() => titleWords.map(() => Math.random() * 0.07));
+  const [subtitleDelay] = useState(() => Math.random() * 0.1);
 
   useEffect(() => {
     if (!startAnimation) return;

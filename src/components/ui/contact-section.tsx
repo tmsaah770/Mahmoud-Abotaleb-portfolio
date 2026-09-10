@@ -34,7 +34,7 @@ export default function ContactSection() {
       } else {
         setStatus('Check your email to activate the form for the first time.');
       }
-    } catch (error) {
+    } catch {
       setStatus('Check your email to activate the form for the first time.');
     }
   };
