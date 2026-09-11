@@ -2,9 +2,29 @@
 
 import { Canvas, extend, useFrame } from '@react-three/fiber';
 import { shaderMaterial, useAspect, useTexture } from '@react-three/drei';
-import { useRef, useState, useEffect, Suspense } from 'react';
+import React, { useRef, useState, useEffect, Suspense, Component } from 'react';
 import * as THREE from 'three';
 import { ArrowDown } from 'lucide-react';
+
+class CanvasErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError(_error) {
+    return { hasError: true };
+  }
+  componentDidCatch(error, errorInfo) {
+    console.error("WebGL Canvas Error:", error, errorInfo);
+  }
+  render() {
+    if (this.state.hasError) {
+      // Return a graceful fallback (empty so the background stays black and text is visible)
+      return <div className="absolute inset-0 bg-black z-0"></div>;
+    }
+    return this.props.children;
+  }
+}
 
 // Using high-quality Unsplash images. 
 const TEXTUREMAP = { src: 'https://i.postimg.cc/XYwvXN8D/img-4.png' };
@@ -243,15 +263,17 @@ export const Html = ({ startAnimation = true }) => {
         <ArrowDown className="w-4 h-4 animate-bounce" />
       </button>
 
-      <Canvas
-        className="absolute inset-0 z-0"
-        flat
-        dpr={[1, 1.5]}>
-        
-        <Suspense fallback={null}>
-          <Scene />
-        </Suspense>
-      </Canvas>
+      <CanvasErrorBoundary>
+        <Canvas
+          className="absolute inset-0 z-0"
+          flat
+          dpr={[1, 1.5]}>
+          
+          <Suspense fallback={null}>
+            <Scene />
+          </Suspense>
+        </Canvas>
+      </CanvasErrorBoundary>
     </div>);
 
 };
