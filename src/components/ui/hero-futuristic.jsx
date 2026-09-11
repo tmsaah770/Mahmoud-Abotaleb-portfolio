@@ -11,8 +11,8 @@ class CanvasErrorBoundary extends Component {
     super(props);
     this.state = { hasError: false };
   }
-  static getDerivedStateFromError(_error) {
-    return { hasError: true };
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
   }
   componentDidCatch(error, errorInfo) {
     console.error("WebGL Canvas Error:", error, errorInfo);
@@ -26,9 +26,9 @@ class CanvasErrorBoundary extends Component {
   }
 }
 
-// Using high-quality Unsplash images. 
-const TEXTUREMAP = { src: 'https://i.postimg.cc/XYwvXN8D/img-4.png' };
-const DEPTHMAP = { src: 'https://i.postimg.cc/2SHKQh2q/raw-4.webp' };
+// Using reliable Unsplash images as textures to prevent CORS or loading issues
+const TEXTUREMAP = { src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop' }; // abstract fluid
+const DEPTHMAP = { src: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop' }; // abstract gradient
 
 const FuturisticShaderMaterial = shaderMaterial(
   {
@@ -68,7 +68,8 @@ const FuturisticShaderMaterial = shaderMaterial(
       // Displace UV
       float strength = 0.01;
       vec2 displacedUv = vUv + (depth * uPointer * strength);
-      vec4 baseColor = texture2D(uMap, displacedUv);
+      // We still sample the depth map, but we don't need the base image color anymore
+      // vec4 baseColor = texture2D(uMap, displacedUv);
 
       // Grid of dots
       vec2 tUv = vec2(vUv.x * uAspect, vUv.y);
@@ -87,11 +88,11 @@ const FuturisticShaderMaterial = shaderMaterial(
       // Flow line based on depth and progress
       float flow = 1.0 - smoothstep(0.0, 0.02, abs(depth - uProgress));
       
-      // Red mask
+      // Red mask (the animation)
       vec3 mask = dotMask * flow * vec3(4.0, 0.0, 0.0); // Boosted red
       
-      // Screen blend
-      vec3 finalColor = 1.0 - (1.0 - baseColor.rgb) * (1.0 - mask);
+      // Final color is just the animation, no image background
+      vec3 finalColor = mask;
       
       // Scanline overlay
       float scanWidth = 0.05;
@@ -99,19 +100,13 @@ const FuturisticShaderMaterial = shaderMaterial(
       vec3 redOverlay = vec3(1.0, 0.0, 0.0) * (1.0 - scanLine) * 0.4;
       finalColor = mix(finalColor, finalColor + redOverlay, 1.0 - scanLine);
 
-      gl_FragColor = vec4(finalColor, uVisible);
+      // Use the max of the color channels to determine alpha so it's transparent where there is no animation
+      float alpha = max(finalColor.r, max(finalColor.g, finalColor.b));
+      gl_FragColor = vec4(finalColor, alpha * uVisible);
     }
   `
 );
 extend({ FuturisticShaderMaterial });
-
-
-
-
-
-
-
-
 
 const WIDTH = 300;
 const HEIGHT = 300;
@@ -135,9 +130,9 @@ const Scene = () => {
     }
   });
 
-  const scaleFactor = 0.40;
+  // Removed scaleFactor = 0.40 so the animation fills the screen
   return (
-    <mesh scale={[w * scaleFactor, h * scaleFactor, 1]}>
+    <mesh scale={[w, h, 1]}>
       <planeGeometry />
       <futuristicShaderMaterial
         ref={materialRef}
