@@ -6,23 +6,23 @@ export default function AboutSection() {
   return (
     <section className="min-h-screen bg-black flex items-center justify-center py-20 px-6 relative overflow-hidden text-white">
       {/* Decorative Grid Background */}
-      <div className="absolute inset-0 z-0 opacity-20" 
-        style={{
-          backgroundImage: 'linear-gradient(rgba(194, 0, 0, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(194, 0, 0, 0.2) 1px, transparent 1px)',
-          backgroundSize: '40px 40px'
-        }}
-      ></div>
+      <div className="absolute inset-0 z-0 opacity-20"
+      style={{
+        backgroundImage: 'linear-gradient(rgba(194, 0, 0, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(194, 0, 0, 0.2) 1px, transparent 1px)',
+        backgroundSize: '40px 40px'
+      }}>
+      </div>
 
       <div className="max-w-6xl w-full z-10 grid md:grid-cols-2 gap-12 items-center">
         
         {/* Left Side: Glowing Image/Graphic Placeholder */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative group flex justify-center"
-        >
+          className="relative group flex justify-center">
+          
           <div className="absolute inset-0 bg-red-600 rounded-full blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity duration-1000"></div>
           <div className="relative w-72 h-72 md:w-96 md:h-96 border border-white/10 rounded-2xl bg-black backdrop-blur-sm overflow-hidden flex items-end justify-center">
             {/* Corner Accents */}
@@ -39,13 +39,13 @@ export default function AboutSection() {
         </motion.div>
 
         {/* Right Side: Text Content */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="flex flex-col gap-6"
-        >
+          className="flex flex-col gap-6">
+          
           <div className="inline-block border border-red-600/50 bg-red-600/10 px-4 py-1.5 rounded-full w-max text-xs tracking-[0.2em] font-bold text-red-500 uppercase">
             SYSTEM.INIT(ABOUT_ME)
           </div>
@@ -99,6 +99,6 @@ export default function AboutSection() {
           }
         `}
       </style>
-    </section>
-  );
+    </section>);
+
 }

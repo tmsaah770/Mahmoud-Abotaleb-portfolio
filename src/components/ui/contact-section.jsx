@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 export default function ContactSection() {
-  const [status, setStatus] = useState<string>('');
+  const [status, setStatus] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.currentTarget;
     setStatus('TRANSMITTING...');
@@ -48,13 +48,13 @@ export default function ContactSection() {
       <div className="max-w-5xl w-full z-10 grid md:grid-cols-2 gap-16 items-center">
         
         {/* Left Side: Contact Info */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col gap-8"
-        >
+          className="flex flex-col gap-8">
+          
           <div>
             <div className="inline-block border border-red-600/50 bg-red-600/10 px-4 py-1.5 rounded-full text-xs tracking-[0.2em] font-bold text-red-500 uppercase mb-6">
               SYSTEM.CONNECT()
@@ -126,13 +126,13 @@ export default function ContactSection() {
         </motion.div>
 
         {/* Right Side: Contact Form */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="bg-white/[0.02] border border-white/10 p-8 rounded-2xl relative overflow-hidden group"
-        >
+          className="bg-white/[0.02] border border-white/10 p-8 rounded-2xl relative overflow-hidden group">
+          
           {/* Subtle scan line for form */}
           <div className="absolute top-0 left-0 w-[2px] h-full bg-red-600 shadow-[0_0_10px_rgba(194,0,0,1)] -translate-x-full group-hover:animate-[scanMoveX_3s_ease-in-out_infinite]"></div>
           
@@ -142,52 +142,52 @@ export default function ContactSection() {
               <label className="text-xs uppercase tracking-widest text-gray-500 font-bold flex items-center gap-2">
                 <Terminal className="w-3 h-3 text-red-500" /> Sender Name
               </label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 name="name"
                 required
                 className="bg-transparent border-b border-white/20 pb-2 outline-none focus:border-red-600 transition-colors text-lg"
-                placeholder="John Doe"
-              />
+                placeholder="John Doe" />
+              
             </div>
 
             <div className="flex flex-col gap-2">
               <label className="text-xs uppercase tracking-widest text-gray-500 font-bold flex items-center gap-2">
                 <Terminal className="w-3 h-3 text-red-500" /> Comm Link (Email)
               </label>
-              <input 
-                type="email" 
+              <input
+                type="email"
                 name="email"
                 required
                 className="bg-transparent border-b border-white/20 pb-2 outline-none focus:border-red-600 transition-colors text-lg"
-                placeholder="john@example.com"
-              />
+                placeholder="john@example.com" />
+              
             </div>
 
             <div className="flex flex-col gap-2">
               <label className="text-xs uppercase tracking-widest text-gray-500 font-bold flex items-center gap-2">
                 <Terminal className="w-3 h-3 text-red-500" /> Payload (Message)
               </label>
-              <textarea 
+              <textarea
                 name="message"
                 required
                 rows={4}
                 className="bg-transparent border-b border-white/20 pb-2 outline-none focus:border-red-600 transition-colors text-lg resize-none"
-                placeholder="Enter your message here..."
-              ></textarea>
+                placeholder="Enter your message here...">
+              </textarea>
             </div>
 
-            {status && (
-              <div className={`text-sm font-bold uppercase tracking-widest ${status.includes('SUCCESS') ? 'text-green-500' : 'text-red-500'}`}>
+            {status &&
+            <div className={`text-sm font-bold uppercase tracking-widest ${status.includes('SUCCESS') ? 'text-green-500' : 'text-red-500'}`}>
                 {status}
               </div>
-            )}
+            }
 
-            <button 
+            <button
               type="submit"
               disabled={status === 'TRANSMITTING...'}
-              className="mt-4 w-full py-4 border border-red-600 text-red-500 font-bold uppercase tracking-widest hover:bg-red-600 hover:text-white disabled:opacity-50 transition-all duration-300 flex items-center justify-center gap-3 relative overflow-hidden group/btn"
-            >
+              className="mt-4 w-full py-4 border border-red-600 text-red-500 font-bold uppercase tracking-widest hover:bg-red-600 hover:text-white disabled:opacity-50 transition-all duration-300 flex items-center justify-center gap-3 relative overflow-hidden group/btn">
+              
               <div className="absolute inset-0 bg-red-600 -translate-x-full group-hover/btn:translate-x-0 transition-transform duration-300 ease-out z-0"></div>
               <span className="relative z-10 flex items-center gap-3">
                 Transmit <Send className="w-4 h-4" />
@@ -198,6 +198,6 @@ export default function ContactSection() {
         </motion.div>
 
       </div>
-    </section>
-  );
+    </section>);
+
 }

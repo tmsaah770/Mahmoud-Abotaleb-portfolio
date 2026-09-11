@@ -2,13 +2,13 @@ import { Code2, Database, Layout, Server, Smartphone, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const skills = [
-  { name: 'Frontend', icon: <Layout className="w-6 h-6" />, desc: 'React, Vite, Tailwind CSS, JS (ES6+)' },
-  { name: 'Backend', icon: <Server className="w-6 h-6" />, desc: 'PHP, Laravel, RESTful APIs, MySQL' },
-  { name: 'Tools & DevOps', icon: <Code2 className="w-6 h-6" />, desc: 'Git, GitHub, Postman, Web Hosting' },
-  { name: 'Architecture', icon: <Database className="w-6 h-6" />, desc: 'MVC, Component-Driven, CI/CD' },
-  { name: 'UI/UX', icon: <Smartphone className="w-6 h-6" />, desc: 'Responsive Design, HTML5, CSS3' },
-  { name: 'Optimization', icon: <Zap className="w-6 h-6" />, desc: 'Clean & Secure Code Standards' },
-];
+{ name: 'Frontend', icon: <Layout className="w-6 h-6" />, desc: 'React, Vite, Tailwind CSS, JS (ES6+)' },
+{ name: 'Backend', icon: <Server className="w-6 h-6" />, desc: 'PHP, Laravel, RESTful APIs, MySQL' },
+{ name: 'Tools & DevOps', icon: <Code2 className="w-6 h-6" />, desc: 'Git, GitHub, Postman, Web Hosting' },
+{ name: 'Architecture', icon: <Database className="w-6 h-6" />, desc: 'MVC, Component-Driven, CI/CD' },
+{ name: 'UI/UX', icon: <Smartphone className="w-6 h-6" />, desc: 'Responsive Design, HTML5, CSS3' },
+{ name: 'Optimization', icon: <Zap className="w-6 h-6" />, desc: 'Clean & Secure Code Standards' }];
+
 
 export default function SkillsSection() {
   return (
@@ -23,8 +23,8 @@ export default function SkillsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col items-center w-full"
-        >
+          className="flex flex-col items-center w-full">
+          
           <div className="inline-block border border-red-600/50 bg-red-600/10 px-4 py-1.5 rounded-full text-xs tracking-[0.2em] font-bold text-red-500 uppercase mb-6">
             SYSTEM.LOAD(SKILLS)
           </div>
@@ -35,15 +35,15 @@ export default function SkillsSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-          {skills.map((skill, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
-              className="group relative bg-white/[0.02] border border-white/10 p-6 rounded-2xl overflow-hidden hover:bg-white/[0.04] transition-colors"
-            >
+          {skills.map((skill, i) =>
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 50, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+            className="group relative bg-white/[0.02] border border-white/10 p-6 rounded-2xl overflow-hidden hover:bg-white/[0.04] transition-colors">
+            
               {/* Scan Effect on Hover */}
               <div className="absolute top-0 left-0 w-[2px] h-full bg-red-600 shadow-[0_0_10px_rgba(194,0,0,1)] -translate-x-full group-hover:animate-[scanMoveX_1.5s_ease-in-out_infinite]"></div>
               
@@ -57,7 +57,7 @@ export default function SkillsSection() {
                 </div>
               </div>
             </motion.div>
-          ))}
+          )}
         </div>
       </div>
 
@@ -71,6 +71,6 @@ export default function SkillsSection() {
           }
         `}
       </style>
-    </section>
-  );
+    </section>);
+
 }

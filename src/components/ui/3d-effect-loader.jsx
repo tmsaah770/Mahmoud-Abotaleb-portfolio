@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 
-interface LoaderProps {
-  className?: string;
-  text?: string;
-}
 
-export const Component: React.FC<LoaderProps> = ({ className, text = "LOADING..." }) => {
+
+
+
+
+export const Component = ({ className, text = "LOADING..." }) => {
   return (
     <div className={cn("relative flex items-center justify-center p-8", className)}>
       {/* Background Ambient Glow */}
@@ -28,8 +28,8 @@ export const Component: React.FC<LoaderProps> = ({ className, text = "LOADING...
         <div className="pl__dot"></div>
         <div className="pl__text">{text}</div>
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export const ThreeDEffectLoader = Component;

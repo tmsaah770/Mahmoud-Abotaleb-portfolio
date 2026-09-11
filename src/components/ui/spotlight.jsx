@@ -1,22 +1,22 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react';
-import { motion, useSpring, useTransform, SpringOptions } from 'framer-motion';
+import { motion, useSpring, useTransform } from 'framer-motion';
 import { cn } from '../../lib/utils';
 
-type SpotlightProps = {
-  className?: string;
-  size?: number;
-  springOptions?: SpringOptions;
-  fill?: string;
-};
+
+
+
+
+
+
 
 export function Spotlight({
   className,
   size = 200,
-  springOptions = { bounce: 0 },
-}: SpotlightProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  springOptions = { bounce: 0 }
+}) {
+  const containerRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [parentElement, setParentElement] = useState<HTMLElement | null>(null);
+  const [parentElement, setParentElement] = useState(null);
 
   const mouseX = useSpring(0, springOptions);
   const mouseY = useSpring(0, springOptions);
@@ -36,7 +36,7 @@ export function Spotlight({
   }, []);
 
   const handleMouseMove = useCallback(
-    (event: MouseEvent) => {
+    (event) => {
       if (!parentElement) return;
       const { left, top } = parentElement.getBoundingClientRect();
       mouseX.set(event.clientX - left);
@@ -48,15 +48,15 @@ export function Spotlight({
   useEffect(() => {
     if (!parentElement) return;
 
-    parentElement.addEventListener('mousemove', handleMouseMove as any);
+    parentElement.addEventListener('mousemove', handleMouseMove);
     parentElement.addEventListener('mouseenter', () => setIsHovered(true));
     parentElement.addEventListener('mouseleave', () => setIsHovered(false));
 
     return () => {
-      parentElement.removeEventListener('mousemove', handleMouseMove as any);
+      parentElement.removeEventListener('mousemove', handleMouseMove);
       parentElement.removeEventListener('mouseenter', () => setIsHovered(true));
       parentElement.removeEventListener('mouseleave', () =>
-        setIsHovered(false)
+      setIsHovered(false)
       );
     };
   }, [parentElement, handleMouseMove]);
@@ -74,8 +74,8 @@ export function Spotlight({
         width: size,
         height: size,
         left: spotlightLeft,
-        top: spotlightTop,
-      }}
-    />
-  );
+        top: spotlightTop
+      }} />);
+
+
 }

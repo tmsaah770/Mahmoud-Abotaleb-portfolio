@@ -17,7 +17,7 @@ const FuturisticShaderMaterial = shaderMaterial(
     uPointer: new THREE.Vector2(),
     uProgress: 0,
     uAspect: 1.0,
-    uVisible: 0.0,
+    uVisible: 0.0
   },
   // vertex shader
   `
@@ -85,27 +85,27 @@ const FuturisticShaderMaterial = shaderMaterial(
 );
 extend({ FuturisticShaderMaterial });
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      futuristicShaderMaterial: any;
-    }
-  }
-}
+
+
+
+
+
+
+
 
 const WIDTH = 300;
 const HEIGHT = 300;
 
 const Scene = () => {
   const [rawMap, depthMap] = useTexture([TEXTUREMAP.src, DEPTHMAP.src]);
-  const materialRef = useRef<any>(null);
+  const materialRef = useRef(null);
   const visible = !!rawMap && !!depthMap;
 
   const [w, h] = useAspect(WIDTH, HEIGHT);
 
   useFrame(({ clock, pointer }) => {
     if (materialRef.current) {
-      materialRef.current.uProgress = (Math.sin(clock.getElapsedTime() * 0.5) * 0.5 + 0.5);
+      materialRef.current.uProgress = Math.sin(clock.getElapsedTime() * 0.5) * 0.5 + 0.5;
       materialRef.current.uPointer = pointer;
       materialRef.current.uVisible = THREE.MathUtils.lerp(
         materialRef.current.uVisible,
@@ -119,23 +119,23 @@ const Scene = () => {
   return (
     <mesh scale={[w * scaleFactor, h * scaleFactor, 1]}>
       <planeGeometry />
-      <futuristicShaderMaterial 
-        ref={materialRef} 
-        uMap={rawMap} 
-        uDepthMap={depthMap} 
-        uAspect={WIDTH/HEIGHT} 
-        transparent 
-      />
-    </mesh>
-  );
+      <futuristicShaderMaterial
+        ref={materialRef}
+        uMap={rawMap}
+        uDepthMap={depthMap}
+        uAspect={WIDTH / HEIGHT}
+        transparent />
+      
+    </mesh>);
+
 };
 
-export const Html = ({ startAnimation = true }: { startAnimation?: boolean }) => {
+export const Html = ({ startAnimation = true }) => {
   const titleWords = 'Build Your Dreams'.split(' ');
 
   const [visibleWords, setVisibleWords] = useState(0);
   const [subtitleVisible, setSubtitleVisible] = useState(false);
-  const [delays] = useState<number[]>(() => titleWords.map(() => Math.random() * 0.07));
+  const [delays] = useState(() => titleWords.map(() => Math.random() * 0.07));
   const [subtitleDelay] = useState(() => Math.random() * 0.1);
 
   useEffect(() => {
@@ -202,15 +202,15 @@ export const Html = ({ startAnimation = true }: { startAnimation?: boolean }) =>
       <div className="h-svh uppercase items-center w-full absolute z-40 pointer-events-none px-10 flex gap-5 justify-center flex-col">
         <div className="text-3xl md:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold">
           <div className="flex space-x-2 lg:space-x-6 overflow-hidden text-white">
-            {titleWords.map((word, index) => (
-              <div
-                key={index}
-                className={`transition-opacity duration-1000 ${index < visibleWords ? 'opacity-100' : 'opacity-0'}`}
-                style={{ animationDelay: `${index * 0.13 + (delays[index] || 0)}s` }}
-              >
+            {titleWords.map((word, index) =>
+            <div
+              key={index}
+              className={`transition-opacity duration-1000 ${index < visibleWords ? 'opacity-100' : 'opacity-0'}`}
+              style={{ animationDelay: `${index * 0.13 + (delays[index] || 0)}s` }}>
+              
                 {word}
               </div>
-            ))}
+            )}
           </div>
         </div>
         <div className="text-xs md:text-xl xl:text-2xl 2xl:text-3xl mt-2 overflow-hidden text-white font-bold">
@@ -219,8 +219,8 @@ export const Html = ({ startAnimation = true }: { startAnimation?: boolean }) =>
             style={{
               animationDelay: `${titleWords.length * 0.13 + 0.2 + subtitleDelay}s`,
               textShadow: ' 0 2px 5px rgba(0, 0, 0, 0.53)'
-            }}
-          >
+            }}>
+            
             <div className="flex flex-col md:flex-row md:items-center justify-center w-fit mx-auto">
               <div className="flex flex-col md:flex-row items-start md:items-center">
                 <span className="text-xl md:text-inherit mb-1 md:mb-0 md:mr-3">WITH</span>
@@ -237,8 +237,8 @@ export const Html = ({ startAnimation = true }: { startAnimation?: boolean }) =>
 
       <button
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-50 text-white flex items-center gap-3 px-6 py-3 rounded-full border border-white/20 bg-black/50 backdrop-blur-sm hover:bg-white/10 transition-colors"
-        style={{ animationDelay: '2.2s' }}
-      >
+        style={{ animationDelay: '2.2s' }}>
+        
         <span className="text-sm font-bold tracking-wide">Scroll to explore</span>
         <ArrowDown className="w-4 h-4 animate-bounce" />
       </button>
@@ -246,14 +246,14 @@ export const Html = ({ startAnimation = true }: { startAnimation?: boolean }) =>
       <Canvas
         className="absolute inset-0 z-0"
         flat
-        dpr={[1, 1.5]}
-      >
+        dpr={[1, 1.5]}>
+        
         <Suspense fallback={null}>
           <Scene />
         </Suspense>
       </Canvas>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Html;
