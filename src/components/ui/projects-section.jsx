@@ -1,4 +1,5 @@
 import { ExternalLink, Code } from 'lucide-react';
+import Wazen from "../../assets/Wazen.png";
 import TmsaahShop from "../../assets/TMSAAH-SHOP.png";
 import Ehyaaa from "../../assets/Ehyaa.png";
 import Timzee from "../../assets/Timzee.png";
@@ -9,6 +10,16 @@ import { motion } from 'framer-motion';
 
 
 const projects = [
+{
+  title: 'WAZEN ERP (وازن)',
+  subtitle: '(ADVANCED CLOUD ERP & SMART POS SYSTEM)',
+  desc: 'An enterprise-grade, cloud-based ERP and smart POS management system engineered for retail enterprises and multi-branch businesses, deployed and live-hosted on a cloud server. Developed with Laravel 12, PHP 8.2+, Tailwind CSS 4, and MySQL. Features high-speed shift-based point of sale (POS) with real-time barcode scanning, multi-method payments, hold-cart capabilities, and thermal (80mm) / standard (A4) receipt printing. Includes multi-branch inventory matrix with automated stock transfers and audit adjustments, customer credit and debt installment tracking, daily operational expense management, and real-time Profit & Loss financial analytics. Fully secured with granular Role-Based Access Control (RBAC via Spatie) across Admin, Branch Manager, and Cashier tiers.',
+  tech: ['Laravel 12', 'PHP 8.2+', 'Tailwind CSS 4', 'MySQL 8', 'Smart POS', 'Spatie RBAC', 'Alpine.js', 'Vite', 'Cloud Hosting'],
+  image: Wazen,
+  link: 'https://wazen1-001-site1.etempurl.com/',
+  github: 'https://github.com/tmsaah770/WAZEN-ERP',
+  demoCredentials: 'admin@wazen.com | password123'
+},
 {
   title: 'TMSAAH SHOP',
   subtitle: '(LUXE STORE)',
@@ -125,6 +136,18 @@ export default function ProjectsSection() {
                       </span>
                   )}
                   </div>
+
+                  {project.demoCredentials && (
+                    <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-mono text-gray-300 bg-white/[0.04] border border-white/10 px-4 py-2 rounded-xl mb-4 shadow-inner">
+                      <span className="text-red-400 font-bold tracking-wider uppercase flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Demo Access:
+                      </span>
+                      <span className="text-gray-200 font-semibold select-all bg-black/40 px-2 py-0.5 rounded border border-white/5">
+                        {project.demoCredentials}
+                      </span>
+                    </div>
+                  )}
 
                   <div className="flex items-center w-full gap-4 pt-4 border-t border-white/10">
                     <a
