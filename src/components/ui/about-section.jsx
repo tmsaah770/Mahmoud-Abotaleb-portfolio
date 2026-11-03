@@ -1,10 +1,10 @@
-import { Terminal, Cpu, Phone, Briefcase, GitBranch } from 'lucide-react';
+import { Terminal, Cpu, Phone, Briefcase, GitBranch, Download } from 'lucide-react';
 import meImage from '../../assets/me.jpg';
 import { motion } from 'framer-motion';
 
 export default function AboutSection() {
   return (
-    <section className="min-h-screen bg-black flex items-center justify-center py-20 px-6 relative overflow-hidden text-white">
+    <section id="about" className="min-h-screen bg-black flex items-center justify-center py-20 px-6 relative overflow-hidden text-white">
       {/* Decorative Grid Background */}
       <div className="absolute inset-0 z-0 opacity-20"
       style={{
@@ -50,30 +50,33 @@ export default function AboutSection() {
             SYSTEM.INIT(ABOUT_ME)
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-extrabold uppercase tracking-wide">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-wide">
             Architecting <br />
             <span className="text-transparent" style={{ WebkitTextStroke: '1px white' }}>The Future</span>
           </h2>
           
           <p className="text-gray-400 text-lg leading-relaxed border-l-2 border-red-600 pl-6">
-            Results-driven Full-Stack Web Developer with hands-on experience building scalable, responsive, and secure web applications. Proficient in architecting dynamic front-end interfaces using React and Tailwind CSS, paired with robust backend development utilizing PHP and Laravel.
+            Junior full-stack web developer with a B.Sc. in Business Information Systems (2026). I build complete web apps, from the MySQL schema and the Laravel or PHP API to the React interface, and I deploy them live. My strongest projects are an ERP and POS system and a full-stack e-commerce store with Stripe and PayPal integration.
           </p>
 
-          <div className="grid grid-cols-2 gap-6 mt-6">
-            <div className="border border-white/5 bg-white/5 p-4 rounded-xl hover:border-red-600/50 transition-colors group">
-              <Terminal className="w-8 h-8 text-red-600 mb-3 group-hover:animate-pulse" />
-              <h3 className="text-lg font-bold">Full-Stack</h3>
-              <p className="text-sm text-gray-500 mt-1">React, Vite, PHP, Laravel & MySQL.</p>
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 mt-6">
+            <div className="border border-white/5 bg-white/5 p-3 sm:p-4 rounded-xl hover:border-red-600/50 transition-colors group overflow-hidden">
+              <Terminal className="w-6 h-6 sm:w-8 sm:h-8 text-red-600 mb-2 sm:mb-3 group-hover:animate-pulse" />
+              <h3 className="text-xs sm:text-base lg:text-lg font-bold tracking-normal">Full-Stack</h3>
+              <p className="text-xs sm:text-sm text-gray-500 mt-1">React, Vite, PHP, Laravel & MySQL.</p>
             </div>
-            <div className="border border-white/5 bg-white/5 p-4 rounded-xl hover:border-red-600/50 transition-colors group">
-              <Cpu className="w-8 h-8 text-red-600 mb-3 group-hover:animate-pulse" />
-              <h3 className="text-lg font-bold">Architecture</h3>
-              <p className="text-sm text-gray-500 mt-1">MVC, Component-Driven, CI/CD.</p>
+            <div className="border border-white/5 bg-white/5 p-3 sm:p-4 rounded-xl hover:border-red-600/50 transition-colors group overflow-hidden">
+              <Cpu className="w-6 h-6 sm:w-8 sm:h-8 text-red-600 mb-2 sm:mb-3 group-hover:animate-pulse" />
+              <h3 className="text-xs sm:text-base lg:text-lg font-bold tracking-normal">Architecture</h3>
+              <p className="text-xs sm:text-sm text-gray-500 mt-1">MVC, Component-Driven, REST APIs.</p>
             </div>
           </div>
 
           {/* Contact Links */}
           <div className="flex flex-wrap gap-4 mt-4">
+            <a href="/Mahmoud_Abotaleb_CV.pdf" download className="flex items-center gap-2 px-4 py-2 bg-red-600 border border-red-600 rounded-full hover:bg-red-500 transition-colors text-sm font-bold tracking-wider">
+              <Download className="w-4 h-4" /> DOWNLOAD CV
+            </a>
             <a href="https://github.com/tmsaah770" target="_blank" rel="noreferrer" className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full hover:border-red-600 hover:text-red-500 transition-colors text-sm font-bold tracking-wider">
               <GitBranch className="w-4 h-4" /> GITHUB
             </a>

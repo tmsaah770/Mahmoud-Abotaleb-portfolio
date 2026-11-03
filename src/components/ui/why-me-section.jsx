@@ -29,11 +29,9 @@ export default function WhyMeSection() {
                 Why Me
               </h2>
               <p className="text-gray-400 text-md leading-relaxed border-l-2 border-red-600 pl-6">
-                With a unique blend of creativity and technical expertise, I craft digital experiences that are not only visually stunning but also highly performant and scalable. My approach merges modern front-end design with robust full-stack architecture to deliver solutions that leave a lasting impact.
-                And Full Stack Web Developer and Business Information Systems (BIS) graduate. Experienced in
-                building scalable, responsive, and high-performance web applications utilizing React, Vite, and Tailwind CSS for
-                front-end interface engineering, combined with PHP and Laravel for secure, robust back-end development.
-                Passionate about writing clean, maintainable, and standards-compliant code, optimizing database architecture.
+                I'm a junior developer who learns by shipping. Over the past year I built and deployed three full-stack apps: an ERP and POS system, a luxury fashion store, and a B2B marketplace for industrial waste. I also built a watch store front end.
+                <br /><br />
+                I care about clean database design, readable code, and interfaces that work well on a phone. I'm looking for a junior full-stack role where I can learn from a team and start contributing quickly.
               </p>
             </motion.div>
 

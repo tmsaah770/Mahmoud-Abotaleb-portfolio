@@ -226,3 +226,9 @@
 
 .pl__dot:nth-child(12) { transform: rotate(330deg) translateY(-5.4em) rotate(-330deg); z-index: 7; }
 .pl__dot:nth-child(12):before { animation-delay: 2.2s; }
+
+/* Smooth scrolling for in-page links (Download CV / View projects / Scroll to explore) */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

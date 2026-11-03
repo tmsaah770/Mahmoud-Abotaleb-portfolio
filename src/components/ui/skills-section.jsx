@@ -2,12 +2,12 @@ import { Code2, Database, Layout, Server, Smartphone, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const skills = [
-{ name: 'Frontend', icon: <Layout className="w-6 h-6" />, desc: 'React, Vite, Tailwind CSS, JS (ES6+)' },
+{ name: 'Frontend', icon: <Layout className="w-6 h-6" />, desc: 'React, Vite, Tailwind CSS, MUI, JS (ES6+)' },
 { name: 'Backend', icon: <Server className="w-6 h-6" />, desc: 'PHP, Laravel, RESTful APIs, MySQL' },
-{ name: 'Tools & DevOps', icon: <Code2 className="w-6 h-6" />, desc: 'Git, GitHub, Postman, Web Hosting' },
-{ name: 'Architecture', icon: <Database className="w-6 h-6" />, desc: 'MVC, Component-Driven, CI/CD' },
+{ name: 'Tools & Deployment', icon: <Code2 className="w-6 h-6" />, desc: 'Git, GitHub, Postman, IIS & Apache hosting' },
+{ name: 'Architecture', icon: <Database className="w-6 h-6" />, desc: 'MVC, Component-Driven, REST APIs' },
 { name: 'UI/UX', icon: <Smartphone className="w-6 h-6" />, desc: 'Responsive Design, HTML5, CSS3' },
-{ name: 'Optimization', icon: <Zap className="w-6 h-6" />, desc: 'Clean & Secure Code Standards' }];
+{ name: 'Data & Access', icon: <Zap className="w-6 h-6" />, desc: 'MySQL schemas, migrations, role-based access' }];
 
 
 export default function SkillsSection() {

@@ -3,61 +3,61 @@ import Wazen from "../../assets/Wazen.png";
 import TmsaahShop from "../../assets/TMSAAH-SHOP.png";
 import Ehyaaa from "../../assets/Ehyaa.png";
 import Timzee from "../../assets/Timzee.png";
-import FreshMeal from "../../assets/Fresh-Meal.png";
-import Dhora from "../../assets/Dhora.png";
 import { motion } from 'framer-motion';
 
 
 
 const projects = [
 {
+  title: 'TMSAAH SHOP',
+  subtitle: '(LUXE STORE)',
+  desc: 'A full-stack luxury fashion store, live on a public server. A React 19 front end (Vite, Tailwind CSS) talks to a Laravel 12 REST API with MySQL and Sanctum authentication. Checkout supports Stripe and PayPal, currently in test mode and ready to switch to live keys. The admin dashboard manages products, categories, orders, and customers.',
+  tech: ['React 19', 'Laravel 12', 'MySQL', 'Sanctum', 'Stripe & PayPal (test mode)', 'Tailwind CSS', 'REST API'],
+  image: TmsaahShop,
+  link: 'https://tmsaah-shop.ehyaa.site/',
+  github: 'https://github.com/tmsaah770/TmsaaH-Shop'
+},
+{
   title: 'WAZEN ERP (وازن)',
-  subtitle: '(ADVANCED CLOUD ERP & SMART POS SYSTEM)',
-  desc: 'An enterprise-grade, cloud-based ERP and smart POS management system engineered for retail enterprises and multi-branch businesses, deployed and live-hosted on a cloud server. Developed with Laravel 12, PHP 8.2+, Tailwind CSS 4, and MySQL. Features high-speed shift-based point of sale (POS) with real-time barcode scanning, multi-method payments, hold-cart capabilities, and thermal (80mm) / standard (A4) receipt printing. Includes multi-branch inventory matrix with automated stock transfers and audit adjustments, customer credit and debt installment tracking, daily operational expense management, and real-time Profit & Loss financial analytics. Fully secured with granular Role-Based Access Control (RBAC via Spatie) across Admin, Branch Manager, and Cashier tiers.',
-  tech: ['Laravel 12', 'PHP 8.2+', 'Tailwind CSS 4', 'MySQL 8', 'Smart POS', 'Spatie RBAC', 'Alpine.js', 'Vite', 'Cloud Hosting'],
+  subtitle: '(CLOUD ERP & POS SYSTEM)',
+  desc: 'A multi-branch ERP and point-of-sale system built solo with Laravel 12 and MySQL. The POS handles shifts with cash reconciliation, barcode search, split payment methods, held invoices, and thermal or A4 receipts. Inventory covers a stock matrix across branches, transfers, and adjustments, plus customer credit, expenses, a live dashboard, and profit and loss reports. Access is controlled by roles (Admin, Branch Manager, Cashier) using Spatie Permission.',
+  tech: ['Laravel 12', 'PHP 8.2+', 'Tailwind CSS 4', 'MySQL 8', 'Spatie RBAC', 'Alpine.js', 'Vite'],
   image: Wazen,
   link: 'https://wazen1-001-site1.etempurl.com/',
   github: 'https://github.com/tmsaah770/WAZEN-ERP',
   demoCredentials: 'admin@wazen.com | password123'
 },
 {
-  title: 'TMSAAH SHOP',
-  subtitle: '(LUXE STORE)',
-  desc: 'A premium full-stack luxury fashion e-commerce platform deployed and live-hosted on a public web server, accessible to all users worldwide. Engineered with a modern decoupled architecture featuring a reactive React 19 SPA (Vite & Tailwind CSS) and a robust Laravel 12 RESTful API backend with MySQL, Sanctum authentication, and dual payment gateways (Stripe & PayPal). Includes an advanced, full-featured Admin Dashboard delivering complete control and comprehensive management over products, categories, orders, customers, and store operations.',
-  tech: ['React 19', 'Laravel 12', 'MySQL', 'Stripe & PayPal', 'Tailwind CSS', 'REST API', 'Web Hosting'],
-  image: TmsaahShop,
-  link: 'https://tmsaah-shop.ehyaa.site/',
-  github: 'https://github.com/tmsaah770/TmsaaH-Shop'
-},
-{
   title: 'EHYAA (إحياء)',
-  desc: 'Comprehensive full-stack web application featuring a high-performance React SPA and a secure Laravel API backend with JWT authentication and automated MySQL migrations.',
-  tech: ['React', 'Laravel', 'MySQL', 'REST API'],
+  subtitle: '(B2B WASTE MARKETPLACE)',
+  desc: 'My graduation project, which I built as the sole developer. A marketplace that connects industrial waste suppliers with recycling factories. Suppliers list materials by type, quantity, and location. Buyers filter the market, order, track shipments, and rate the supplier. A React 19 SPA with role-based routes, backed by a PHP (PDO) REST API on MySQL.',
+  tech: ['React 19', 'Vite', 'Tailwind CSS', 'MUI', 'PHP (PDO)', 'MySQL', 'REST API'],
   image: Ehyaaa,
   link: 'https://ehyaa.site',
   github: 'https://github.com/tmsaah770/EHYAA'
 },
 {
   title: 'TIMZEE',
-  desc: 'Modern, responsive luxury timepiece e-commerce store with a mobile-first philosophy. Features dynamic product filtering and a stateful persistent shopping cart.',
+  subtitle: '(FRONTEND ONLY)',
+  desc: 'A responsive luxury watch store front end with a mobile-first layout, dynamic product filtering, and a persistent shopping cart. This project has no backend.',
   tech: ['React', 'Vite', 'Tailwind CSS'],
   image: Timzee,
   link: 'https://tmsaah770.github.io/TmsaaH',
   github: 'https://github.com/tmsaah770/TmsaaH/tree/main/pro2'
-},
+}];
+
+const practiceProjects = [
 {
   title: 'FRESH MEAL',
-  desc: 'A vibrant and modern food delivery or restaurant landing page showcasing an interactive layout and responsive design.',
+  desc: 'Responsive restaurant landing page.',
   tech: ['HTML5', 'CSS3', 'JavaScript'],
-  image: FreshMeal,
   link: 'https://tmsaah770.github.io/Fresh-Meal/',
   github: 'https://github.com/tmsaah770/Fresh-Meal'
 },
 {
   title: 'DHORA',
-  desc: 'A beautifully designed interactive web interface demonstrating front-end capabilities, smooth animations, and clean layouts.',
+  desc: 'Responsive multi-section landing page with animations.',
   tech: ['HTML5', 'CSS3', 'JavaScript'],
-  image: Dhora,
   link: 'https://tmsaah770.github.io/Dhora/',
   github: 'https://github.com/tmsaah770/Dhora'
 }];
@@ -65,7 +65,7 @@ const projects = [
 
 export default function ProjectsSection() {
   return (
-    <section className="min-h-screen bg-black flex flex-col items-center justify-center py-20 px-6 relative overflow-hidden text-white">
+    <section id="projects" className="min-h-screen bg-black flex flex-col items-center justify-center py-20 px-6 relative overflow-hidden text-white">
       
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-red-600/5 blur-[150px] pointer-events-none"></div>
@@ -171,6 +171,40 @@ export default function ProjectsSection() {
               </div>
             </motion.div>
           )}
+        </div>
+
+        {/* Small early projects, kept compact so the four main projects stay in focus */}
+        <div className="w-[90%] lg:w-[80%] mt-16">
+          <h3 className="text-xl font-bold uppercase tracking-wider text-gray-300 mb-6 text-center">
+            Practice projects
+          </h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            {practiceProjects.map((project) =>
+            <div
+              key={project.title}
+              className="bg-white/[0.02] border border-white/10 rounded-2xl p-6 flex flex-col gap-4 hover:border-red-600/50 transition-colors">
+                <div>
+                  <h4 className="text-lg font-bold uppercase tracking-wider">{project.title}</h4>
+                  <p className="text-gray-400 text-sm mt-1">{project.desc}</p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((t) =>
+                  <span key={t} className="text-xs font-mono text-red-400 bg-red-950/30 px-3 py-1 rounded-md border border-red-900/50">
+                      {t}
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-center gap-4 pt-4 border-t border-white/10 mt-auto">
+                  <a href={project.link} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-white hover:text-red-500 transition-colors">
+                    <ExternalLink className="w-4 h-4 text-red-500" /> Live Demo
+                  </a>
+                  <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-gray-400 hover:text-white transition-colors ml-auto">
+                    <Code className="w-4 h-4" /> Code
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </section>);

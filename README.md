@@ -1,16 +1,33 @@
-# React + Vite
+# Mahmoud Abotaleb: Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio of Mahmoud Abotaleb, a junior full-stack web developer (React and Laravel) based in Egypt.
 
-Currently, two official plugins are available:
+**Live site:** https://mahmoud-abotaleb-portfolio.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What is inside
 
-## React Compiler
+- **TMSAAH SHOP**: full-stack luxury fashion store (React 19, Laravel 12, MySQL, Sanctum, Stripe and PayPal in test mode).
+- **WAZEN ERP**: multi-branch ERP and POS system (Laravel 12, MySQL, Spatie Permission).
+- **EHYAA**: B2B industrial waste marketplace, my graduation project (React 19, PHP, MySQL).
+- **TIMZEE**: luxury watch store front end (React, Vite, Tailwind CSS).
+- Two small practice projects built with HTML, CSS, and JavaScript.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Each project has a live demo and a link to its source code.
 
-## Expanding the Oxlint configuration
+## Built with
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+React, Vite, Tailwind CSS, Framer Motion, React Three Fiber (hero animation), Spline (3D scene), Lucide icons.
+
+## Run locally
+
+```bash
+npm install
+npm run dev      # development server
+npm run build    # production build in /dist
+```
+
+## Contact
+
+- Email: mahmoudabotaleb960@gmail.com
+- GitHub: https://github.com/tmsaah770
+- LinkedIn: https://linkedin.com/in/mahmoud-abotaleb-7924a3392

@@ -9,16 +9,28 @@ import ContactSection from './components/ui/contact-section';
 import ThreeDEffectLoader from './components/ui/3d-effect-loader';
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
+  // Short intro (1.5s). It is skipped when the visitor has already seen it in this browser session.
+  const [loading, setLoading] = useState(() => {
+    try {
+      return !sessionStorage.getItem('intro-seen');
+    } catch {
+      return true;
+    }
+  });
 
   useEffect(() => {
-    // 5 seconds initial loading duration to ensure all 3D assets and components are ready
+    if (!loading) return;
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 5000);
+      try {
+        sessionStorage.setItem('intro-seen', '1');
+      } catch {
+        /* storage unavailable: the intro simply plays again next time */
+      }
+    }, 1500);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [loading]);
 
   return (
     <>
@@ -45,7 +57,7 @@ export default function Home() {
                 <motion.div 
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
-                  transition={{ duration: 4.8, ease: "easeInOut" }}
+                  transition={{ duration: 1.4, ease: "easeInOut" }}
                   className="h-full bg-gradient-to-r from-red-700 via-red-500 to-red-600 shadow-[0_0_10px_rgba(239,68,68,0.8)]"
                 />
               </div>

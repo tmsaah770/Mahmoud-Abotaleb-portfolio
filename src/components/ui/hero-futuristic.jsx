@@ -146,7 +146,7 @@ const Scene = () => {
 };
 
 export const Html = ({ startAnimation = true }) => {
-  const titleWords = 'Build Your Dreams'.split(' ');
+  const titleWords = 'Full-Stack Web Developer'.split(' ');
 
   const [visibleWords, setVisibleWords] = useState(0);
   const [subtitleVisible, setSubtitleVisible] = useState(false);
@@ -157,10 +157,10 @@ export const Html = ({ startAnimation = true }) => {
     if (!startAnimation) return;
 
     if (visibleWords < titleWords.length) {
-      const timeout = setTimeout(() => setVisibleWords(visibleWords + 1), 600);
+      const timeout = setTimeout(() => setVisibleWords(visibleWords + 1), 250);
       return () => clearTimeout(timeout);
     } else {
-      const timeout = setTimeout(() => setSubtitleVisible(true), 800);
+      const timeout = setTimeout(() => setSubtitleVisible(true), 300);
       return () => clearTimeout(timeout);
     }
   }, [visibleWords, titleWords.length, startAnimation]);
@@ -186,7 +186,7 @@ export const Html = ({ startAnimation = true }) => {
             top: 0;
             width: 100%;
             height: 100%;
-            -webkit-text-stroke: 4px rgba(194, 0, 0, 1);
+            -webkit-text-stroke: 2px rgba(194, 0, 0, 1);
             z-index: -1;
           }
           .scan-effect-container::after {
@@ -214,9 +214,9 @@ export const Html = ({ startAnimation = true }) => {
           }
         `}
       </style>
-      <div className="h-svh uppercase items-center w-full absolute z-40 pointer-events-none px-10 flex gap-5 justify-center flex-col">
-        <div className="text-3xl md:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold">
-          <div className="flex space-x-2 lg:space-x-6 overflow-hidden text-white">
+      <div className="h-svh uppercase items-center w-full absolute z-40 pointer-events-none px-4 sm:px-10 pb-16 sm:pb-20 md:pb-0 flex gap-3 sm:gap-5 justify-center flex-col">
+        <h1 className="text-2xl sm:text-3xl md:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold text-center">
+          <div className="flex flex-wrap justify-center gap-x-3 lg:gap-x-6 text-white">
             {titleWords.map((word, index) =>
             <div
               key={index}
@@ -227,8 +227,8 @@ export const Html = ({ startAnimation = true }) => {
               </div>
             )}
           </div>
-        </div>
-        <div className="text-xs md:text-xl xl:text-2xl 2xl:text-3xl mt-2 overflow-hidden text-white font-bold">
+        </h1>
+        <div className="text-xs md:text-xl xl:text-2xl 2xl:text-3xl mt-0 sm:mt-2 overflow-hidden text-white font-bold">
           <div
             className={`transition-opacity duration-1000 ${subtitleVisible ? 'opacity-100' : 'opacity-0'}`}
             style={{
@@ -238,24 +238,45 @@ export const Html = ({ startAnimation = true }) => {
             
             <div className="flex flex-col md:flex-row md:items-center justify-center w-fit mx-auto">
               <div className="flex flex-col md:flex-row items-start md:items-center">
-                <span className="text-xl md:text-inherit mb-1 md:mb-0 md:mr-3">WITH</span>
-                <span className="scan-effect-container text-4xl md:text-5xl font-extrabold tracking-wide" data-text="M A H M O U D">M A H M O U D</span>
+                <span className="text-lg sm:text-xl md:text-inherit mb-0.5 md:mb-0 md:mr-3">I'M</span>
+                <span className="scan-effect-container text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-[0.12em]" data-text="MAHMOUD">MAHMOUD</span>
               </div>
               
-              <span className="scan-effect-container text-5xl font-extrabold tracking-wide text-red-500 md:text-white my-3 md:my-0 md:mx-4 self-center md:self-auto" data-text="</>">{"</>"}</span>
+              <span className="scan-effect-container text-4xl sm:text-5xl font-extrabold tracking-wide text-red-500 md:text-white my-1.5 sm:my-3 md:my-0 md:mx-4 self-center md:self-auto" data-text="</>">{"</>"}</span>
               
-              <span className="scan-effect-container text-4xl md:text-5xl font-extrabold tracking-wide self-end md:self-auto" data-text="A B O T A L E B">A B O T A L E B</span>
+              <span className="scan-effect-container text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-[0.12em] self-end md:self-auto" data-text="ABOTALEB">ABOTALEB</span>
             </div>
+          </div>
+        </div>
+
+        <div
+          className={`flex flex-col items-center gap-3 sm:gap-4 mt-2 sm:mt-4 normal-case pointer-events-auto transition-opacity duration-1000 ${subtitleVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <p className="text-xs sm:text-sm md:text-lg font-semibold text-gray-300 text-center max-w-xl px-2">
+            Junior developer working with React and Laravel. Open to roles in Egypt, Saudi Arabia, and remote.
+          </p>
+          <div className="flex flex-row flex-wrap justify-center items-center gap-2.5 sm:gap-3">
+            <a
+              href="/Mahmoud_Abotaleb_CV.pdf"
+              download
+              className="px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-red-600 hover:bg-red-500 text-white text-xs sm:text-sm font-bold tracking-wide transition-colors whitespace-nowrap">
+              Download CV
+            </a>
+            <a
+              href="#projects"
+              className="px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-white/30 hover:bg-white/10 text-white text-xs sm:text-sm font-bold tracking-wide transition-colors whitespace-nowrap">
+              View projects
+            </a>
           </div>
         </div>
       </div>
 
       <button
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-50 text-white flex items-center gap-3 px-6 py-3 rounded-full border border-white/20 bg-black/50 backdrop-blur-sm hover:bg-white/10 transition-colors"
+        onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+        className="absolute bottom-4 sm:bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 z-50 text-white flex items-center gap-2.5 sm:gap-3 px-5 sm:px-6 py-2 sm:py-3 rounded-full border border-white/20 bg-black/50 backdrop-blur-sm hover:bg-white/10 transition-colors whitespace-nowrap"
         style={{ animationDelay: '2.2s' }}>
         
-        <span className="text-sm font-bold tracking-wide">Scroll to explore</span>
-        <ArrowDown className="w-4 h-4 animate-bounce" />
+        <span className="text-xs sm:text-sm font-bold tracking-wide">Scroll to explore</span>
+        <ArrowDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-bounce" />
       </button>
 
       <CanvasErrorBoundary>

@@ -8,7 +8,7 @@ export default function ContactSection() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.currentTarget;
-    setStatus('TRANSMITTING...');
+    setStatus('Sending...');
 
     const formData = new FormData(form);
     // Convert FormData to JSON
@@ -16,7 +16,7 @@ export default function ContactSection() {
     const json = JSON.stringify(object);
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/tmsaah77@gmail.com", {
+      const response = await fetch("https://formsubmit.co/ajax/mahmoudabotaleb960@gmail.com", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -28,14 +28,14 @@ export default function ContactSection() {
       const data = await response.json();
 
       if (data.success === "true") {
-        setStatus('TRANSMISSION SUCCESSFUL!');
+        setStatus('Message sent. Thank you!');
         form.reset();
         setTimeout(() => setStatus(''), 5000);
       } else {
-        setStatus('Check your email to activate the form for the first time.');
+        setStatus('The message could not be sent. Please email me directly at mahmoudabotaleb960@gmail.com.');
       }
     } catch {
-      setStatus('Check your email to activate the form for the first time.');
+      setStatus('The message could not be sent. Please email me directly at mahmoudabotaleb960@gmail.com.');
     }
   };
 
@@ -64,20 +64,20 @@ export default function ContactSection() {
               <span className="text-transparent" style={{ WebkitTextStroke: '1px white' }}>Connection</span>
             </h2>
             <p className="text-gray-400 leading-relaxed">
-              Open to new opportunities, collaborations, and challenging projects. Send a message to initiate the handshake protocol.
+              Open to junior full-stack roles in Egypt, Saudi Arabia, and remote. Send a message and I will get back to you soon.
             </p>
           </div>
 
           <div className="flex flex-col gap-6">
-            <div className="flex items-center gap-4 group">
+            <a href="mailto:mahmoudabotaleb960@gmail.com" className="flex items-center gap-4 group">
               <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-red-600 group-hover:text-red-500 transition-colors bg-white/5">
                 <Mail className="w-5 h-5" />
               </div>
               <div>
                 <p className="text-sm text-gray-500 uppercase tracking-widest font-bold">Email</p>
-                <p className="text-lg">tmsaah77@gmail.com</p>
+                <p className="text-lg hover:text-red-500 transition-colors break-all">mahmoudabotaleb960@gmail.com</p>
               </div>
-            </div>
+            </a>
             
 
             {/* Phone */}
@@ -140,57 +140,57 @@ export default function ContactSection() {
             
             <div className="flex flex-col gap-2">
               <label className="text-xs uppercase tracking-widest text-gray-500 font-bold flex items-center gap-2">
-                <Terminal className="w-3 h-3 text-red-500" /> Sender Name
+                <Terminal className="w-3 h-3 text-red-500" /> Your name
               </label>
               <input
                 type="text"
                 name="name"
                 required
                 className="bg-transparent border-b border-white/20 pb-2 outline-none focus:border-red-600 transition-colors text-lg"
-                placeholder="John Doe" />
+                placeholder="Your name" />
               
             </div>
 
             <div className="flex flex-col gap-2">
               <label className="text-xs uppercase tracking-widest text-gray-500 font-bold flex items-center gap-2">
-                <Terminal className="w-3 h-3 text-red-500" /> Comm Link (Email)
+                <Terminal className="w-3 h-3 text-red-500" /> Your email
               </label>
               <input
                 type="email"
                 name="email"
                 required
                 className="bg-transparent border-b border-white/20 pb-2 outline-none focus:border-red-600 transition-colors text-lg"
-                placeholder="john@example.com" />
+                placeholder="you@example.com" />
               
             </div>
 
             <div className="flex flex-col gap-2">
               <label className="text-xs uppercase tracking-widest text-gray-500 font-bold flex items-center gap-2">
-                <Terminal className="w-3 h-3 text-red-500" /> Payload (Message)
+                <Terminal className="w-3 h-3 text-red-500" /> Message
               </label>
               <textarea
                 name="message"
                 required
                 rows={4}
                 className="bg-transparent border-b border-white/20 pb-2 outline-none focus:border-red-600 transition-colors text-lg resize-none"
-                placeholder="Enter your message here...">
+                placeholder="Write your message here...">
               </textarea>
             </div>
 
             {status &&
-            <div className={`text-sm font-bold uppercase tracking-widest ${status.includes('SUCCESS') ? 'text-green-500' : 'text-red-500'}`}>
+            <div className={`text-sm font-bold tracking-wide break-words ${status.startsWith('Message sent') ? 'text-green-500' : 'text-red-500'}`}>
                 {status}
               </div>
             }
 
             <button
               type="submit"
-              disabled={status === 'TRANSMITTING...'}
+              disabled={status === 'Sending...'}
               className="mt-4 w-full py-4 border border-red-600 text-red-500 font-bold uppercase tracking-widest hover:bg-red-600 hover:text-white disabled:opacity-50 transition-all duration-300 flex items-center justify-center gap-3 relative overflow-hidden group/btn">
               
               <div className="absolute inset-0 bg-red-600 -translate-x-full group-hover/btn:translate-x-0 transition-transform duration-300 ease-out z-0"></div>
               <span className="relative z-10 flex items-center gap-3">
-                Transmit <Send className="w-4 h-4" />
+                Send message <Send className="w-4 h-4" />
               </span>
             </button>
 
